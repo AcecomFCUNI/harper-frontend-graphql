@@ -1,43 +1,22 @@
 import { useState } from 'react'
 
+import { AppContainer, AppHeader, AppButton } from './styles'
 import './App.css'
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>Hello Vite + React!</p>
+    <AppContainer>
+      <AppHeader>
         <p>
-          <button type='button' onClick={() => setCount(count => count + 1)}>
+          <AppButton type='button' onClick={() => setCount(count => count + 1)}>
             count is: {count}
-          </button>
+          </AppButton>
         </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates. So fast!
-        </p>
-        <p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className='App-link'
-            href='https://vitejs.dev/guide/features.html'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+        <p>This is going to be the ACECOM web page, someday!</p>
+      </AppHeader>
+    </AppContainer>
   )
 }
 
