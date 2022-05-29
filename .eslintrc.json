@@ -1,0 +1,62 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "import",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "import/extensions": [
+      2,
+      {
+        "ts": "never",
+        "js": "never",
+        "json": "always"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "webpack.config.js"],
+        "optionalDependencies": ["**/*.test.js"],
+        "peerDependencies": ["**/*.test.js"]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "printWidth": 80,
+        "quoteProps": "as-needed",
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "none"
+      }
+    ],
+    "radix": ["error", "as-needed"],
+    "spaced-comment": ["error", "always"]
+  }
+}
