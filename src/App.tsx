@@ -1,21 +1,23 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { AppContainer, AppHeader, AppButton } from './styles'
+import { GlobalStyle } from './global'
+import { routes } from './routes'
+
+const Test = () => <h1>404</h1>
 
 const App = () => {
-  const [count, setCount] = useState(0)
-
   return (
-    <AppContainer>
-      <AppHeader>
-        <p>
-          <AppButton type='button' onClick={() => setCount(count => count + 1)}>
-            count is: {count}
-          </AppButton>
-        </p>
-        <p>This is going to be the ACECOM web page, someday!</p>
-      </AppHeader>
-    </AppContainer>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          {routes.map(({ path, component }) => (
+            <Route path={path} key={path} element={component} />
+          ))}
+          <Route path='*' element={<Test />} />
+        </Routes>
+      </Router>
+    </>
   )
 }
 
