@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { AppContainer, AppHeader, AppButton } from './styles'
-import './App.css'
 
 const App = () => {
   const [count, setCount] = useState(0)

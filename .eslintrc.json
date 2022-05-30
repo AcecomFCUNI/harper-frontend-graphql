@@ -38,9 +38,9 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.test.js", "webpack.config.js"],
-        "optionalDependencies": ["**/*.test.js"],
-        "peerDependencies": ["**/*.test.js"]
+        "devDependencies": ["**/*.test.js", "**/*.config.ts"],
+        "optionalDependencies": ["**/*.test.js", "**/*.config.ts"],
+        "peerDependencies": ["**/*.test.js", "**/*.config.ts"]
       }
     ],
     "prettier/prettier": [
