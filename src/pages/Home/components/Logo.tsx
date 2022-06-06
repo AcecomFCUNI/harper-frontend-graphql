@@ -8,13 +8,13 @@ import acecomLogo from '../../../static/acecomLogo.svg'
 const useStyles = makeStyles((theme: Theme) => ({
   acecomLogo: {
     width: '100%',
-    maxHeight: '100%'
-    // [theme.breakpoints.down('sm')]: {
-    //   width: '40%'
-    // },
-    // [theme.breakpoints.down('xs')]: {
-    //   width: '70%'
-    // }
+    maxHeight: '100%',
+    [theme.breakpoints.down('sm')]: {
+      width: '40%'
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '70%'
+    }
   },
   fontWrapper: {
     textAlign: 'center',
@@ -24,19 +24,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#FFF',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: '700',
-    fontSize: '12vw'
-    // [theme.breakpoints.down('xs')]: {
-    //   fontSize: '15vw'
-    // }
+    fontSize: '12vw',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '15vw'
+    }
   },
   subtitleMobile: {
     color: '#FFF',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: '300',
-    fontSize: '3vw'
-    // [theme.breakpoints.down('xs')]: {
-    //   fontSize: '3.5vw'
-    // }
+    fontSize: '3vw',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '3.5vw'
+    }
   }
 }))
 
