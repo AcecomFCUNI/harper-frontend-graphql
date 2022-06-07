@@ -3,7 +3,7 @@ import { useTheme } from '@mui/styles'
 import { Routes, Route } from 'react-router-dom'
 
 import { GlobalStyle } from './global'
-import { DesktopLayout } from './global/layout'
+import { DesktopLayout, MobileLayout } from './global/layout'
 import { routes } from './routes'
 
 const Test = () => <h1>404</h1>
@@ -11,7 +11,7 @@ const Test = () => <h1>404</h1>
 const App = () => {
   const theme = useTheme<Theme>()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const Layout = isMobile ? () => <></> : DesktopLayout
+  const Layout = isMobile ? MobileLayout : DesktopLayout
 
   return (
     <Layout>

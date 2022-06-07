@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { Grid, Hidden, Typography } from '@mui/material'
+import { Grid, Hidden, Typography, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Theme } from '@mui/system'
 
 import acecomLogo from '../../../static/acecomLogo.svg'
 
@@ -9,6 +8,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   acecomLogo: {
     width: '100%',
     maxHeight: '100%',
+    [theme.breakpoints.down('md')]: {
+      width: '60%'
+    },
     [theme.breakpoints.down('sm')]: {
       width: '40%'
     },
@@ -47,6 +49,8 @@ type LogoProps = {
 const Logo: FC<LogoProps> = ({ isMobile = false }) => {
   const classes = useStyles()
 
+  console.log({ isMobile })
+
   return (
     <>
       <Grid
@@ -55,8 +59,7 @@ const Logo: FC<LogoProps> = ({ isMobile = false }) => {
         md={5}
         sm={12}
         container
-        // justify={isMobile ? 'center' : 'flex-start'}
-        direction={isMobile ? 'column' : 'row'}
+        justifyContent={isMobile ? 'center' : 'flex-start'}
         alignItems='center'
         style={{ width: '100%', height: '100%' }}
       >

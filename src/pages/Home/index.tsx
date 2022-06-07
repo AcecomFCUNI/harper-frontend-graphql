@@ -1,6 +1,5 @@
-import { Grid, useTheme, useMediaQuery } from '@mui/material'
+import { Grid, useTheme, useMediaQuery, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Theme } from '@mui/system'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { Engine } from 'tsparticles-engine'
@@ -30,20 +29,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '75%',
     left: '50%',
     top: '50%',
-    transform: 'translate(-50%,-50%)'
-    // [theme.breakpoints.down('md')]: {
-    //   width: '80%'
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   width: '90%',
-    //   height: '90%'
-    // }
+    transform: 'translate(-50%,-50%)',
+    [theme.breakpoints.down('md')]: {
+      width: '7z0%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      height: '90%'
+    }
   }
 }))
 
 const Home = () => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const classes = useStyles()
   const particlesInit = async (main: Engine) => {
     await loadFull(main)

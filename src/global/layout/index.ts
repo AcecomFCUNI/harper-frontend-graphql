@@ -1,1 +1,2 @@
-export { DesktopLayout } from './Desktop'
+export * from './Desktop'
+export * from './Mobile'

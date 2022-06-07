@@ -1,26 +1,25 @@
 import { FC } from 'react'
-import { Typography, Grid } from '@mui/material'
+import { Typography, Grid, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Theme } from '@mui/system'
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
     color: '#FFF',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: '700',
-    fontSize: '8.5vw'
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: '10vw'
-    // }
+    fontSize: '8.5vw',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '10vw'
+    }
   },
   subtitle: {
     color: '#FFF',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: '300',
-    fontSize: '1.8vw'
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: '1.8vw'
-    // }
+    fontSize: '1.8vw',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1.8vw'
+    }
   }
 }))
 
@@ -39,7 +38,7 @@ const Title: FC<TitleProps> = ({ isMobile = false }) => {
           lg={8}
           md={7}
           container
-          // justify='center'
+          justifyContent='center'
           alignItems='center'
           style={{ width: '100%', height: '100%' }}
         >
