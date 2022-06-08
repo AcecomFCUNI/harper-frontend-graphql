@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import { Typography, Grid, Theme } from '@mui/material'
+import { Grid, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+
+import { CustomTypoGraphy } from './styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
-    color: '#FFF',
-    fontFamily: 'Nunito, sans-serif',
     fontWeight: '700',
     fontSize: '8.5vw',
     [theme.breakpoints.down('md')]: {
@@ -13,8 +13,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   subtitle: {
-    color: '#FFF',
-    fontFamily: 'Nunito, sans-serif',
     fontWeight: '300',
     fontSize: '1.8vw',
     [theme.breakpoints.down('md')]: {
@@ -43,12 +41,12 @@ const Title: FC<TitleProps> = ({ isMobile = false }) => {
           style={{ width: '100%', height: '100%' }}
         >
           <div style={{ textAlign: 'center' }}>
-            <Typography variant='h1' className={classes.title}>
+            <CustomTypoGraphy variant='h1' className={classes.title}>
               ACECOM
-            </Typography>
-            <Typography variant='h2' className={classes.subtitle}>
+            </CustomTypoGraphy>
+            <CustomTypoGraphy variant='h2' className={classes.subtitle}>
               Asociación Científica Especializada en Computación
-            </Typography>
+            </CustomTypoGraphy>
           </div>
         </Grid>
       )}

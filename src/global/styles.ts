@@ -5,20 +5,22 @@ type GlobalStyleProps = {
 }
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
-  body {
+  * {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    font-family: "Nunito";
   }
 
-  code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  *::-webkit-scrollbar {
+    background-color: #5bc1a5;
+    width: 8px;
+    height: 8px;
+  }
 
+  *::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 15px;
+  }
 `
 
 export { GlobalStyle }

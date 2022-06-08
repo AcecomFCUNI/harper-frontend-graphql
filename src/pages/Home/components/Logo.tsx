@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { Grid, Hidden, Typography, Theme } from '@mui/material'
+import { Grid, Hidden, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
+import { CustomTypoGraphy } from './styles'
 import acecomLogo from '../../../static/acecomLogo.svg'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -23,8 +24,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: '20px'
   },
   titleMobile: {
-    color: '#FFF',
-    fontFamily: 'Nunito, sans-serif',
     fontWeight: '700',
     fontSize: '12vw',
     [theme.breakpoints.down('xs')]: {
@@ -32,8 +31,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   subtitleMobile: {
-    color: '#FFF',
-    fontFamily: 'Nunito, sans-serif',
     fontWeight: '300',
     fontSize: '3vw',
     [theme.breakpoints.down('xs')]: {
@@ -48,8 +45,6 @@ type LogoProps = {
 
 const Logo: FC<LogoProps> = ({ isMobile = false }) => {
   const classes = useStyles()
-
-  console.log({ isMobile })
 
   return (
     <>
@@ -66,12 +61,12 @@ const Logo: FC<LogoProps> = ({ isMobile = false }) => {
         <img alt='acecomLogo' src={acecomLogo} className={classes.acecomLogo} />
         <Hidden mdUp>
           <div className={classes.fontWrapper}>
-            <Typography variant='h1' className={classes.titleMobile}>
+            <CustomTypoGraphy variant='h1' className={classes.titleMobile}>
               ACECOM
-            </Typography>
-            <Typography variant='h2' className={classes.subtitleMobile}>
+            </CustomTypoGraphy>
+            <CustomTypoGraphy variant='h2' className={classes.subtitleMobile}>
               Asociación Científica Especializada en Computación
-            </Typography>
+            </CustomTypoGraphy>
           </div>
         </Hidden>
       </Grid>
