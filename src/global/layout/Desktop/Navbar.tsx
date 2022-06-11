@@ -1,9 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-
 import { AppBar, Toolbar, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
-import { routes } from '../../../routes'
+import { routes } from 'routes'
 
 const navbarHeight = 40
 const appBarButtonStyles = {
@@ -39,7 +38,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Navbar = () => {
-  const history = useNavigate()
+  const navigate = useNavigate()
   const classes = useStyles()
   const location = useLocation()
 
@@ -56,7 +55,7 @@ const Navbar = () => {
                   : classes.appBarButton
               }
               variant='text'
-              onClick={() => history(path)}
+              onClick={() => navigate(path)}
             >
               {label}
             </Button>

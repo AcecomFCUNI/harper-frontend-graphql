@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Typography, Fade, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
-import { routes } from '../../../routes'
+import { routes } from 'routes'
 
 const useStyles = makeStyles((theme: Theme) => ({
   menuFab: {

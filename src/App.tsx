@@ -2,9 +2,8 @@ import { Theme, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import { Routes, Route } from 'react-router-dom'
 
-import { GlobalStyle } from './global'
-import { DesktopLayout, MobileLayout } from './global/layout'
-import { routes } from './routes'
+import { GlobalStyle, DesktopLayout, MobileLayout } from './global'
+import { routes } from 'routes'
 
 const Test = () => <h1>404</h1>
 

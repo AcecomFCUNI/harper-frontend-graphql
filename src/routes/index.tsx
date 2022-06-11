@@ -1,4 +1,4 @@
-import { Home, Areas, Members, Contact } from './pages'
+import { Home, Areas, Members, Contact } from '../pages'
 
 const routes = [
   {
