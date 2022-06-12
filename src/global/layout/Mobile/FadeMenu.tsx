@@ -1,7 +1,9 @@
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Fade, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
+import { MobileLayoutContext } from './context'
 import { routes } from 'routes'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -30,11 +32,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const FadeMenu = () => {
+  const { openFab, toggleOpenFab } = useContext(MobileLayoutContext)
   const classes = useStyles()
   const navigate = useNavigate()
 
   return (
-    <Fade in={false}>
+    <Fade in={openFab}>
       <div className={classes.menuFab}>
         {routes.map(({ label, path }) => (
           <div
@@ -42,6 +45,7 @@ const FadeMenu = () => {
             className={classes.menuOption}
             onClick={() => {
               navigate(path)
+              toggleOpenFab()
             }}
           >
             <Typography variant='h2' className={classes.menuOptionFont}>
