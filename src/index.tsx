@@ -1,4 +1,4 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ApolloProvider } from '@apollo/client'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -17,15 +17,15 @@ WebFont.load({
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <StyledEngineProvider injectFirst>
+  <StrictMode>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
           <Router>
             <App />
           </Router>
         </ApolloProvider>
-      </StyledEngineProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  </StrictMode>
 )

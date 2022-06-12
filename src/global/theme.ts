@@ -41,7 +41,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-const theme = createTheme({
+const themeConfig = {
   customColors: {
     upColor: 'rgb(0,21,41)',
     middleColor: 'rgba(17,93,99,1)',
@@ -65,6 +65,8 @@ const theme = createTheme({
       xl: 1536
     }
   }
-})
+}
 
-export { theme }
+const theme = createTheme(themeConfig)
+
+export { theme, themeConfig }
