@@ -14,10 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   subtitle: {
     fontWeight: '300',
-    fontSize: '1.8vw',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '1.8vw'
-    }
+    fontSize: '1.8vw'
   }
 }))
 

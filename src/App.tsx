@@ -9,7 +9,7 @@ const Test = () => <h1>404</h1>
 
 const App = () => {
   const theme = useTheme<Theme>()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const Layout = isMobile ? MobileLayout : DesktopLayout
 
   return (

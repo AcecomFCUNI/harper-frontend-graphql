@@ -2,21 +2,21 @@ import { FC } from 'react'
 import { Grid, Hidden, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
+import { acecomLogo } from 'static'
 import { CustomTypoGraphy } from './styles'
-import acecomLogo from '../../../static/acecomLogo.svg'
 
 const useStyles = makeStyles((theme: Theme) => ({
   acecomLogo: {
     width: '100%',
     maxHeight: '100%',
     [theme.breakpoints.down('md')]: {
-      width: '60%'
+      width: '45%'
+    },
+    [theme.breakpoints.down('smd')]: {
+      width: '50%'
     },
     [theme.breakpoints.down('sm')]: {
-      width: '40%'
-    },
-    [theme.breakpoints.down('xs')]: {
-      width: '70%'
+      width: '65%'
     }
   },
   fontWrapper: {
@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   titleMobile: {
     fontWeight: '700',
     fontSize: '12vw',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '15vw'
     }
   },
   subtitleMobile: {
     fontWeight: '300',
     fontSize: '3vw',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '3.5vw'
     }
   }
@@ -54,7 +54,8 @@ const Logo: FC<LogoProps> = ({ isMobile = false }) => {
         md={5}
         sm={12}
         container
-        justifyContent={isMobile ? 'center' : 'flex-start'}
+        justifyContent='center'
+        alignContent='center'
         alignItems='center'
         style={{ width: '100%', height: '100%' }}
       >

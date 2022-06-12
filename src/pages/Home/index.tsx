@@ -11,7 +11,6 @@ const fullDiv = {
   width: '100%',
   height: '100%'
 }
-
 const useStyles = makeStyles((theme: Theme) => ({
   particles: {
     ...fullDiv,
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: '50%',
     transform: 'translate(-50%,-50%)',
     [theme.breakpoints.down('md')]: {
-      width: '7z0%'
+      width: '80%'
     },
     [theme.breakpoints.down('sm')]: {
       width: '90%',
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Home = () => {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const classes = useStyles()
   const particlesInit = async (main: Engine) => {

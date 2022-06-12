@@ -31,17 +31,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const FadeMenu = () => {
   const classes = useStyles()
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   return (
-    <Fade in={true}>
+    <Fade in={false}>
       <div className={classes.menuFab}>
         {routes.map(({ label, path }) => (
           <div
             key={label}
             className={classes.menuOption}
             onClick={() => {
-              history(path)
+              navigate(path)
             }}
           >
             <Typography variant='h2' className={classes.menuOptionFont}>

@@ -8,7 +8,7 @@ const navbarHeight = 40
 const appBarButtonStyles = {
   height: navbarHeight,
   borderRadius: 0,
-  color: '#222222',
+  color: '#FFF',
   padding: '0 25px',
   fontSize: '14px',
   fontFamily: 'Nunito Sans',

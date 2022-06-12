@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react'
-import { AppBar } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { FabMobile } from './Fab'
 import { FadeMenu } from './FadeMenu'
@@ -22,10 +21,7 @@ const MobileLayout: FC<MobileLayoutProps> = ({ children }) => {
     <>
       <FadeMenu />
       <FabMobile />
-      <div className={classes.content}>
-        <AppBar position='fixed' />
-        {children}
-      </div>
+      <div className={classes.content}>{children}</div>
     </>
   )
 }

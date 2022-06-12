@@ -31,6 +31,14 @@ declare module '@mui/material/styles' {
       fontColor?: string
     }
   }
+  interface BreakpointOverrides {
+    xs: true
+    smd: true
+    sm: true
+    md: true
+    lg: true
+    xl: true
+  }
 }
 
 const theme = createTheme({
@@ -46,6 +54,16 @@ const theme = createTheme({
     hoverColor: '#4B4B4B',
     activeColor: '#363636',
     fontColor: '#BCBCBC'
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      smd: 756,
+      md: 900,
+      lg: 1200,
+      xl: 1536
+    }
   }
 })
 
