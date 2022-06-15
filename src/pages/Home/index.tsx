@@ -4,7 +4,7 @@ import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { Engine } from 'tsparticles-engine'
 
-import { particlesConfig } from './utils'
+import { particlesConfig } from 'utils'
 import { Logo, Title } from './components'
 
 const fullDiv = {
@@ -48,28 +48,26 @@ const Home = () => {
   }
 
   return (
-    <>
-      <div
-        style={{
-          width: '100vw',
-          height: '100vh',
-          userSelect: 'none',
-          position: 'fixed'
-        }}
-      >
-        <Particles
-          init={particlesInit}
-          className={classes.particles}
-          params={particlesConfig}
-        />
-        <div className={classes.wrapper}>
-          <Grid container style={fullDiv}>
-            <Title isMobile={isMobile} />
-            <Logo isMobile={isMobile} />
-          </Grid>
-        </div>
+    <div
+      style={{
+        width: '100vw',
+        height: '100vh',
+        userSelect: 'none',
+        position: 'fixed'
+      }}
+    >
+      <Particles
+        init={particlesInit}
+        className={classes.particles}
+        params={particlesConfig}
+      />
+      <div className={classes.wrapper}>
+        <Grid container style={fullDiv}>
+          <Title isMobile={isMobile} />
+          <Logo isMobile={isMobile} />
+        </Grid>
       </div>
-    </>
+    </div>
   )
 }
 
