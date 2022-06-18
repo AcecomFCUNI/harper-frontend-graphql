@@ -1,6 +1,7 @@
 import { Box, Card, Grid, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useMutation } from 'react-query'
+import { Formik } from 'formik'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { Engine } from 'tsparticles-engine'
@@ -124,7 +125,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderBottom: '1px solid #666',
     color: '#ddd',
     fontSize: 14,
-    textTransform: 'uppercase',
     outline: 'none',
     transition: 'border-color 0.2s',
     fontWeight: 700,
@@ -246,75 +246,124 @@ const Contact = () => {
                 xs={12}
                 className={classes.cardBodyContent}
               >
-                <Box className={classes.cardFormGroup}>
-                  <input
-                    className={classes.cardFormControl}
-                    placeholder='NOMBRE'
-                  />
-                </Box>
-                <Box className={classes.cardFormGroup}>
-                  <input
-                    className={classes.cardFormControl}
-                    placeholder='CORREO'
-                  />
-                </Box>
-                <Box className={classes.cardFormGroup}>
-                  <input
-                    className={classes.cardFormControl}
-                    placeholder='CELULAR'
-                  />
-                </Box>
-                <Box
-                  className={`${classes.cardFormGroup} ${classes.cardFormControlMessage}`}
+                <Formik
+                  initialValues={{
+                    mail: '',
+                    message: '',
+                    name: '',
+                    phone: ''
+                  }}
+                  validate={values => {
+                    const errors: {
+                      mail?: string
+                      message?: string
+                      name?: string
+                    } = {}
+
+                    if (!values.mail) errors.mail = 'Requerido'
+                    else if (
+                      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                        values.mail
+                      )
+                    )
+                      errors.mail = 'Invalid email address'
+
+                    if (!values.message) errors.message = 'Requerido'
+
+                    if (!values.name) errors.name = 'Requerido'
+
+                    return errors
+                  }}
+                  onSubmit={(valuesToBeSubmitted, { setSubmitting }) => {
+                    mutation.mutate(
+                      {
+                        ...valuesToBeSubmitted,
+                        subject: 'Test mail api'
+                      },
+                      {
+                        onSettled: () => {
+                          setSubmitting(false)
+                        }
+                      }
+                    )
+                  }}
                 >
-                  <input
-                    className={classes.cardFormControl}
-                    placeholder='MENSAJE'
-                  />
-                </Box>
-                <Box
-                  className={`${classes.cardFormGroup} ${classes.cardFormControlButtonContainer}`}
-                >
-                  <button className={classes.cardFormControlButton}>
-                    ENVIAR
-                  </button>
-                </Box>
+                  {({
+                    values,
+                    errors,
+                    touched,
+                    isSubmitting,
+                    handleChange,
+                    handleSubmit
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <Box className={classes.cardFormGroup}>
+                        <input
+                          type='text'
+                          name='name'
+                          value={values.name}
+                          className={classes.cardFormControl}
+                          placeholder='NOMBRE'
+                          onChange={handleChange}
+                        />
+                      </Box>
+                      {errors.name && touched.name && errors.name}
+                      <Box className={classes.cardFormGroup}>
+                        <input
+                          type='text'
+                          name='mail'
+                          value={values.mail}
+                          className={classes.cardFormControl}
+                          placeholder='CORREO'
+                          onChange={handleChange}
+                        />
+                      </Box>
+                      {errors.mail && touched.mail && errors.mail}
+                      <Box className={classes.cardFormGroup}>
+                        <input
+                          type='text'
+                          name='phone'
+                          value={values.phone}
+                          className={classes.cardFormControl}
+                          placeholder='CELULAR'
+                          onChange={handleChange}
+                        />
+                      </Box>
+                      {errors.phone && touched.phone && errors.phone}
+                      <Box
+                        className={`${classes.cardFormGroup} ${classes.cardFormControlMessage}`}
+                      >
+                        <input
+                          type='text'
+                          name='message'
+                          value={values.message}
+                          className={classes.cardFormControl}
+                          placeholder='MENSAJE'
+                          onChange={handleChange}
+                        />
+                      </Box>
+                      {errors.message && touched.message && errors.message}
+                      <Box
+                        className={`${classes.cardFormGroup} ${classes.cardFormControlButtonContainer}`}
+                      >
+                        <button
+                          type='submit'
+                          disabled={isSubmitting}
+                          className={classes.cardFormControlButton}
+                        >
+                          ENVIAR
+                        </button>
+                      </Box>
+                    </form>
+                  )}
+                </Formik>
               </Grid>
             </Grid>
           </Box>
         </Card>
-        {/* <button
-          // style={{ marginTop: 50 }}
-          onClick={() => {
-            mutation.mutate({
-              mail: 'anthony.luzquinos@gmail.com',
-              message: 'Testing',
-              name: 'Anthony',
-              subject: 'Test mail api',
-              phone: '12345'
-            })
-          }}
-        >
-          Contact
-        </button> */}
       </div>
     </div>
   )
 }
 
 export { Contact }
-// https://swapi.dev/api/people/11/
-/**
-POST https://api.acecom.dev/api/contactUs
-Content-Type: applicaion/json
-api-key: Bearer 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
-
-{
-  "lastName": "Luzquiños",
-  "mail": "anthony.luzquinos@gmail.com",
-  "message": "Testing",
-  "name": "Anthony",
-  "subject": "Test mail api"
-}
-
- */
