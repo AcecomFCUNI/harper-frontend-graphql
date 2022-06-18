@@ -79,9 +79,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 'auto'
   },
   cardBodyContent: {
-    padding: '28px 48px',
+    padding: '28px 48px !important',
     [theme.breakpoints.down('md')]: {
-      padding: '24px 32px'
+      padding: '24px 32px !important'
     }
   },
   cardBodyContentLeft: {
@@ -166,7 +166,7 @@ type ContactUsBody = {
 const Contact = () => {
   const classes = useStyles()
   // eslint-disable-next-line no-unused-vars
-  const mutation = useMutation((body: ContactUsBody) =>
+  const { mutateAsync, isLoading, error } = useMutation((body: ContactUsBody) =>
     fetch(`${import.meta.env.VITE_BACKEND_URL}/contactUs`, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -195,7 +195,7 @@ const Contact = () => {
         params={particlesConfig}
       />
       <div className={classes.wrapper}>
-        <Card sx={{ minHeight: 360 }} className={classes.cardContainer}>
+        <Card className={classes.cardContainer}>
           <Box className={classes.card}>
             <Box className={classes.cardHeader}>
               <Box className={classes.cardHeaderLeft}>
@@ -275,17 +275,12 @@ const Contact = () => {
                     return errors
                   }}
                   onSubmit={(valuesToBeSubmitted, { setSubmitting }) => {
-                    mutation.mutate(
-                      {
-                        ...valuesToBeSubmitted,
-                        subject: 'Test mail api'
-                      },
-                      {
-                        onSettled: () => {
-                          setSubmitting(false)
-                        }
-                      }
-                    )
+                    mutateAsync({
+                      ...valuesToBeSubmitted,
+                      subject: 'Test mail api'
+                    }).finally(() => {
+                      setSubmitting(false)
+                    })
                   }}
                 >
                   {({
@@ -305,6 +300,7 @@ const Contact = () => {
                           className={classes.cardFormControl}
                           placeholder='NOMBRE'
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </Box>
                       {errors.name && touched.name && errors.name}
@@ -316,6 +312,7 @@ const Contact = () => {
                           className={classes.cardFormControl}
                           placeholder='CORREO'
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </Box>
                       {errors.mail && touched.mail && errors.mail}
@@ -327,6 +324,7 @@ const Contact = () => {
                           className={classes.cardFormControl}
                           placeholder='CELULAR'
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </Box>
                       {errors.phone && touched.phone && errors.phone}
@@ -340,6 +338,7 @@ const Contact = () => {
                           className={classes.cardFormControl}
                           placeholder='MENSAJE'
                           onChange={handleChange}
+                          disabled={isLoading}
                         />
                       </Box>
                       {errors.message && touched.message && errors.message}
@@ -348,7 +347,7 @@ const Contact = () => {
                       >
                         <button
                           type='submit'
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || isLoading}
                           className={classes.cardFormControlButton}
                         >
                           ENVIAR
