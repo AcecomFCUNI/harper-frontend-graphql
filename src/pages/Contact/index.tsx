@@ -1,4 +1,4 @@
-import { Box, Card, Theme } from '@mui/material'
+import { Box, Card, Grid, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useMutation } from 'react-query'
 import Particles from 'react-tsparticles'
@@ -34,7 +34,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     flex: '0 1 700px',
     margin: 'auto',
     borderRadius: 16,
-    backgroundColor: '#3e3e3e'
+    backgroundColor: '#3e3e3e',
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '80%'
+    }
   },
   card: {
     position: 'relative',
@@ -70,11 +73,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: '#999'
   },
   cardBody: {
-    display: 'flex'
+    display: 'flex',
+    margin: 0,
+    width: 'auto'
   },
   cardBodyContent: {
-    flex: 1,
-    padding: '50px 64px'
+    padding: '28px 48px',
+    [theme.breakpoints.down('md')]: {
+      padding: '24px 32px'
+    }
   },
   cardBodyContentLeft: {
     display: 'flex',
@@ -96,6 +103,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: 25,
       height: 4,
       backgroundColor: '#f2f0f0'
+    },
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 24
     }
   },
   cardBodyContact: {
@@ -155,6 +165,7 @@ type ContactUsBody = {
 
 const Contact = () => {
   const classes = useStyles()
+  // eslint-disable-next-line no-unused-vars
   const mutation = useMutation((body: ContactUsBody) =>
     fetch(`${import.meta.env.VITE_BACKEND_URL}/contactUs`, {
       method: 'POST',
@@ -184,10 +195,7 @@ const Contact = () => {
         params={particlesConfig}
       />
       <div className={classes.wrapper}>
-        <Card
-          sx={{ minWidth: 240, minHeight: 400 }}
-          className={classes.cardContainer}
-        >
+        <Card sx={{ minHeight: 360 }} className={classes.cardContainer}>
           <Box className={classes.card}>
             <Box className={classes.cardHeader}>
               <Box className={classes.cardHeaderLeft}>
@@ -210,8 +218,14 @@ const Contact = () => {
                 <Box className={classes.cardHeaderEllipsis} />
               </Box>
             </Box>
-            <Box className={classes.cardBody}>
-              <Box
+            <Grid container spacing={2} className={classes.cardBody}>
+              <Grid
+                item
+                xl={6}
+                lg={6}
+                md={6}
+                sm={12}
+                xs={12}
                 className={`${classes.cardBodyContent} ${classes.cardBodyContentLeft}`}
               >
                 <Box className={classes.cardBodyTitle}>
@@ -222,8 +236,16 @@ const Contact = () => {
                     EMAIL INFO: acecom@uni.edu.pe
                   </SecondaryTypography>
                 </Box>
-              </Box>
-              <Box className={classes.cardBodyContent}>
+              </Grid>
+              <Grid
+                item
+                xl={6}
+                lg={6}
+                md={6}
+                sm={12}
+                xs={12}
+                className={classes.cardBodyContent}
+              >
                 <Box className={classes.cardFormGroup}>
                   <input
                     className={classes.cardFormControl}
@@ -257,8 +279,8 @@ const Contact = () => {
                     ENVIAR
                   </button>
                 </Box>
-              </Box>
-            </Box>
+              </Grid>
+            </Grid>
           </Box>
         </Card>
         {/* <button
