@@ -1,14 +1,20 @@
 import { Box, Card, Grid, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import InfoIcon from '@mui/icons-material/Info'
+import ErrorIcon from '@mui/icons-material/Error'
 import { useMutation } from 'react-query'
 import { Formik } from 'formik'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { Engine } from 'tsparticles-engine'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { particlesConfig } from 'utils'
 import { MainTypography, SecondaryTypography } from './styles'
+import 'sweetalert2/dist/sweetalert2.css'
 
+const ReactSwal = withReactContent(Swal)
 const fullDiv = {
   width: '100%',
   height: '100%'
@@ -154,19 +160,36 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   }
 }))
-
-type ContactUsBody = {
-  name: string
-  mail: string
-  phone: string
-  message: string
-  subject: string
+const fireSwal = (successOrError: 'success' | 'error') => {
+  ReactSwal.fire({
+    title: (
+      <p style={{ fontSize: 16 }}>
+        <span style={{ display: 'flex' }}>
+          {successOrError === 'success' ? (
+            <>
+              <InfoIcon style={{ marginRight: 8 }} /> ¡Correo enviado!
+            </>
+          ) : (
+            <>
+              <ErrorIcon style={{ marginRight: 8 }} />
+              Hubo un error enviando el correo :(
+            </>
+          )}
+        </span>
+      </p>
+    ),
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    background: '#4d4d4d',
+    color: '#ddd',
+    width: 'auto'
+  })
 }
 
 const Contact = () => {
   const classes = useStyles()
-  // eslint-disable-next-line no-unused-vars
-  const { mutateAsync, isLoading, error } = useMutation((body: ContactUsBody) =>
+  const { mutateAsync, isLoading } = useMutation((body: ContactUsBody) =>
     fetch(`${import.meta.env.VITE_BACKEND_URL}/contactUs`, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -277,10 +300,17 @@ const Contact = () => {
                   onSubmit={(valuesToBeSubmitted, { setSubmitting }) => {
                     mutateAsync({
                       ...valuesToBeSubmitted,
-                      subject: 'Test mail api'
-                    }).finally(() => {
-                      setSubmitting(false)
+                      subject: 'Mensaje desde la página de ACECOM'
                     })
+                      .then(() => {
+                        fireSwal('success')
+                      })
+                      .catch(() => {
+                        fireSwal('error')
+                      })
+                      .finally(() => {
+                        setSubmitting(false)
+                      })
                   }}
                 >
                   {({
