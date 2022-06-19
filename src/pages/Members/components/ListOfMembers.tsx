@@ -68,27 +68,33 @@ const ListOfMembers: FC<ListOfMembersProps> = props => {
             columnSpacing={{ xs: 1, sm: 2, md: 2 }}
             justifyContent='center'
           >
-            {boardOfDirectors.map(({ id, name, displayName, photo, git }) => (
-              <Grid key={id} item xl={4} lg={4} md={6} sm={6} xs={12}>
-                <MemberCard
-                  name={displayName || name}
-                  photo={photo}
-                  git={git}
-                />
-              </Grid>
-            ))}
+            {boardOfDirectors.map(
+              ({ id, name, displayName, photo, git, linkedin }) => (
+                <Grid key={id} item xl={4} lg={4} md={6} sm={6} xs={12}>
+                  <MemberCard
+                    name={displayName || name}
+                    photo={photo}
+                    git={git}
+                    linkedin={linkedin}
+                  />
+                </Grid>
+              )
+            )}
           </Grid>
           <div className={classes.title}>Miembros</div>
           <Grid container spacing={2} justifyContent='center'>
-            {regularMembers.map(({ id, name, displayName, photo, git }) => (
-              <Grid key={id} item xl={4} lg={4} md={6} sm={6} xs={12}>
-                <MemberCard
-                  name={displayName || name}
-                  photo={photo}
-                  git={git}
-                />
-              </Grid>
-            ))}
+            {regularMembers.map(
+              ({ id, name, displayName, photo, git, linkedin }) => (
+                <Grid key={id} item xl={4} lg={4} md={6} sm={6} xs={12}>
+                  <MemberCard
+                    name={displayName || name}
+                    photo={photo}
+                    git={git}
+                    linkedin={linkedin}
+                  />
+                </Grid>
+              )
+            )}
           </Grid>
         </div>
       </div>

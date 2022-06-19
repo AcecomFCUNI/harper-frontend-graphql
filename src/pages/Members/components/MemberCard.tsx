@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Link, Card, CardContent, Typography, Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
 const photoSize = 150
 const paddingCard = 16
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '50%',
     objectFit: 'cover'
   },
-  githubIcon: {
+  icon: {
     color: '#222222'
   }
 }))
@@ -49,9 +50,10 @@ type MemberCardProps = {
   name: string
   photo: string
   git: string
+  linkedin: string | null
 }
 
-const MemberCard: FC<MemberCardProps> = ({ name, photo, git }) => {
+const MemberCard: FC<MemberCardProps> = ({ name, photo, git, linkedin }) => {
   const classes = useStyles({ photo, name })
 
   return (
@@ -63,12 +65,7 @@ const MemberCard: FC<MemberCardProps> = ({ name, photo, git }) => {
             justifyContent: 'center'
           }}
         >
-          <img
-            // onClick={() => dispatch(slideMoreInfo())}
-            alt={name}
-            src={photo}
-            className={classes.photo}
-          />
+          <img alt={name} src={photo} className={classes.photo} />
         </div>
         <Typography variant='h3' className={classes.name}>
           {name}
@@ -77,12 +74,20 @@ const MemberCard: FC<MemberCardProps> = ({ name, photo, git }) => {
           style={{
             display: 'flex',
             justifyContent: 'center',
-            marginTop: '10px'
+            marginTop: '10px',
+            gap: 4
           }}
         >
           {git !== '' ? (
             <Link href={git} target='_blank' rel='noopener noreferrer'>
-              <GitHubIcon className={classes.githubIcon} />
+              <GitHubIcon className={classes.icon} />
+            </Link>
+          ) : (
+            <div style={{ height: 28 }} />
+          )}
+          {linkedin && linkedin !== '' ? (
+            <Link href={linkedin} target='_blank' rel='noopener noreferrer'>
+              <LinkedInIcon className={classes.icon} />
             </Link>
           ) : (
             <div style={{ height: 28 }} />

@@ -7,6 +7,7 @@ const GET_MEMBERS = gql`
       name
       displayName
       git
+      linkedin
       photo
       status {
         name
