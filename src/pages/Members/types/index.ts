@@ -1,6 +1,7 @@
 export interface Member {
   id: string
   name: string
+  displayName: string | null
   git: string
   photo: string
   status: {

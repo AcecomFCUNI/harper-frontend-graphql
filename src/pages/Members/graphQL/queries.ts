@@ -5,6 +5,7 @@ const GET_MEMBERS = gql`
     members: getMembers {
       id
       name
+      displayName
       git
       photo
       status {
